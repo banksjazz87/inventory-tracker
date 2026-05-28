@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Home</title>
+{% endblock %}
+
+{% block body %}
+    <h2>Welcome to the Inventory Tracker!</h2>
+    <p>This application helps you keep track of your inventory items.</p>
+    <div>
+         <a href="{% url 'menu-item-list'%}">Menu Items</a>
+         <a href="{% url 'purchase-list' %}">Purchase List</a>
+         <a href="{% url 'ingredient-list' %}">Inventory List</a>
+    </div>
+{% endblock %}
