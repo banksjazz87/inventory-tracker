@@ -16,7 +16,8 @@ class Ingredient(models.Model):
         "lb": "Pound",
         "mg": "Milligram",
         "cn": "Can",
-        "pkg": "Package"
+        "pkg": "Package",
+        "qty": "Quantity"
     }
     name = models.CharField(max_length=250)
     quantity = models.IntegerField()
@@ -32,7 +33,7 @@ class MenuItem(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
 
     def __str__(self):
-        return f"\n name: {self.name}\nprice: {self.price}"
+        return f"\nid: {self.pk} \n name: {self.name}\nprice: {self.price}"
 
 
 class RecipeRequirement(models.Model):
