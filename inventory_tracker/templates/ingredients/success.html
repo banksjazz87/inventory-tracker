@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Success Page</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Success!</h1>
+    <p>You have successfully {{ method }} {{ submitted_data.name }}</p>
+{% endblock %}
