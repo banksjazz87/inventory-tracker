@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Delete Ingredient Form</title>
+{% endblock %}
+
+{% block body %}
+    <h2>Delete Ingredient</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p> Are you sure you want to delete {{ object.name }}?</p>
+        <input type="submit" value="Yes"/>
+        <a href="{% url 'ingredient-list' %}">No</a>
+    </form>
+    
+    </table>
+{% endblock %}

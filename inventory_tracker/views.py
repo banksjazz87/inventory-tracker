@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, DeleteView
 from urllib.parse import urlencode
 from django.urls import reverse_lazy, reverse
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
@@ -49,6 +49,21 @@ class EditIngredientView(UpdateView):
         query_data = {
             'name': self.object.name,
             'method': 'updated'
+        }
+
+        return f"{base_url}?{urlencode(query_data)}"
+
+class DeleteIngredientView(DeleteView):
+    model = Ingredient
+    template_name = "ingredients/delete.html"
+    success_url = "ingredients/success.html"
+    fields = "__all__"
+
+    def get_success_url(self):
+        base_url = reverse('ingredient-success')
+        query_data = {
+            'name': self.object.name,
+            'method': 'deleted'
         }
 
         return f"{base_url}?{urlencode(query_data)}"

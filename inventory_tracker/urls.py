@@ -28,4 +28,5 @@ urlpatterns = [
     path('ingredients/create_form/', views.AddIngredientView.as_view(), name='add-ingredient'),
     path('ingredients/success/', views.IngredientSuccess.as_view(), name="ingredient-success"),
     path('ingredients/edit/<int:pk>', views.EditIngredientView.as_view(), name="ingredient-edit"),
+    path('ingredients/delete/<int:pk>', views.DeleteIngredientView.as_view(), name="ingredient-delete"),
 ]
