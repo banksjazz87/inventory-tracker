@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Ingredient(models.Model):
     COOKING_UNITS = {
@@ -26,6 +27,10 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f"\n name: {self.name}\n quantity: {self.quantity}\n unit_name: {self.unit_name}\n price_per_unit: {self.price_per_unit}"
+    
+    def get_absolute_url(self):
+        return reverse("model_detail", kwargs={"pk": self.pk})
+    
 
 
 class MenuItem(models.Model):

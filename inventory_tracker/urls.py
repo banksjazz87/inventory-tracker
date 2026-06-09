@@ -23,7 +23,9 @@ urlpatterns = [
     path('', views.HomeView.as_view(), name='home'),
     path('menu-items/', views.MenuItemListView.as_view(), name='menu-item-list'),
     path('purchases/', views.PurchaseListView.as_view(), name='purchase-list'),
+
     path('ingredients/', views.InventoryItemListView.as_view(), name='ingredient-list'),
     path('ingredients/create_form/', views.AddIngredientView.as_view(), name='add-ingredient'),
-    path('ingredients/success/', views.IngredientSuccess.as_view(), name="ingredient-success")
+    path('ingredients/success/', views.IngredientSuccess.as_view(), name="ingredient-success"),
+    path('ingredients/edit/<int:pk>', views.EditIngredientView.as_view(), name="ingredient-edit"),
 ]
