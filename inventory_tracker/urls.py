@@ -21,7 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.HomeView.as_view(), name='home'),
-    path('menu-items/', views.MenuItemListView.as_view(), name='menu-item-list'),
     path('purchases/', views.PurchaseListView.as_view(), name='purchase-list'),
 
     path('ingredients/', views.InventoryItemListView.as_view(), name='ingredient-list'),
@@ -29,4 +28,7 @@ urlpatterns = [
     path('ingredients/success/', views.IngredientSuccess.as_view(), name="ingredient-success"),
     path('ingredients/edit/<int:pk>', views.EditIngredientView.as_view(), name="ingredient-edit"),
     path('ingredients/delete/<int:pk>', views.DeleteIngredientView.as_view(), name="ingredient-delete"),
+
+    path('menu-items/', views.MenuItemListView.as_view(), name='menu-item-list'),
+    path('menu-items/ingredient_list/<int:pk>', views.MenuIngredientList.as_view(), name="menu-item-ingredient-list"),
 ]

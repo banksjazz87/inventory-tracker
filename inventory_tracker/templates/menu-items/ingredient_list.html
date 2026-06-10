@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Ingredients</title>
+{% endblock %}
+
+{% block body %}
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Ingredient</th>
+        <th>Quantity</th>
+    <tr>
+    {% for ingredient in ingredients %}
+        <tr>
+            <td>{{ ingredient.menu_item }}</td>
+            <td>{{ ingredient.ingredient }}</td>
+            <td>{{ ingredient.quantity }}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+{% endblock %}

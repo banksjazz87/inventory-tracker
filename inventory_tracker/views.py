@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, ListView, CreateView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import TemplateView, ListView, CreateView, View
 from django.views.generic.edit import UpdateView, DeleteView
 from urllib.parse import urlencode
 from django.urls import reverse_lazy, reverse
@@ -10,14 +10,36 @@ from .forms import AddIngredientForm
 class HomeView(TemplateView):
    template_name = "main/home.html"
 
-class MenuItemListView(TemplateView):
+
+
+################################################
+## MENU ITEM VIEWS ##
+################################################
+class MenuItemListView(ListView):
     model = MenuItem
     template_name = "menu-items/index.html"
     context_object_name = "items"
 
+class MenuIngredientList(ListView):
+    model = RecipeRequirement
+    template_name = "menu-items/ingredient_list.html"
+    context_name = "ingredients"
+
+    def get_queryset(self):
+        fk_id = self.kwargs.get('pk')
+        return RecipeRequirement.objects.filter(menu_item=fk_id)
+
+
+
+################################################
+## PURCHASE VIEWS ##
+################################################
 class PurchaseListView(TemplateView):
     template_name = "purchases/index.html"
 
+################################################
+## INGREDIENT VIEWS ##
+################################################
 class InventoryItemListView(ListView):
     model = Ingredient
     template_name = "ingredients/index.html"
@@ -36,8 +58,7 @@ class AddIngredientView(CreateView):
         }
 
         return f"{base_url}?{urlencode(query_data)}"
-    
-    
+       
 class EditIngredientView(UpdateView):
     model = Ingredient
     template_name = "ingredients/edit.html"
