@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% block head %}
+<title>Add Menu Item</title>
+{% endblock %} 
+
+{% block body %}
+
+<main>
+	<h1>Add New Menu Item</h1>
+
+	<form method="post">
+		{% csrf_token %} 
+        
+        {{ menu_form.as_p }}
+
+		<input
+			type="submit"
+			value="Submit"
+		/>
+	</form>
+
+    <form method="post">
+		{% csrf_token %} 
+        
+            {{ recipe_form.as_p }}
+
+		<input
+			type="submit"
+			value="Submit"
+		/>
+	</form>
+</main>
+
+{% endblock %}

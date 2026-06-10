@@ -6,6 +6,7 @@
 
 {% block body %}
     <h2>Menu Items will be listed here</h2>
+    <a href="{% url 'add-menu-item' %}">Add Menu Item</a>
      <table>
         <thead>
             <th>ID</th>
@@ -17,9 +18,6 @@
                 <td>{{ item.pk }}</td>
                 <td>{{ item.name }}</td>
                 <td>${{ item.price}}</td>
-                <td>View Ingredients</td>
-                {% comment %} <td><a href="{% url 'ingredient-edit' pk=ingredient.pk %}">Edit</a></td>
-                <td><a href="{% url 'ingredient-delete' pk=ingredient.pk %}">Delete</a></td> {% endcomment %}
                  <td><a href="{% url 'menu-item-ingredient-list' pk=item.pk%}">Recipe</a></td>
             </tr>
         {% endfor %}

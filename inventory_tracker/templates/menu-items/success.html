@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Success Page</title>
+{% endblock %}
+
+{% block body %}
+    <h1>Success!</h1>
+    {% comment %} <p>You have successfully {{ submitted_data.method }} {{ submitted_data.name }}</p>
+    <a href="{% url 'ingredient-list'%}" >Back to Ingredients</a> {% endcomment %}
+{% endblock %}

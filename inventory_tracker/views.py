@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from urllib.parse import urlencode
 from django.urls import reverse_lazy, reverse
 from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
-from .forms import AddIngredientForm
+from .forms import *
 
 class HomeView(TemplateView):
    template_name = "main/home.html"
@@ -28,6 +28,39 @@ class MenuIngredientList(ListView):
     def get_queryset(self):
         fk_id = self.kwargs.get('pk')
         return RecipeRequirement.objects.filter(menu_item=fk_id)
+    
+class MenuSuccess(TemplateView):
+    template_name = "menu-items/success.html"
+    
+class AddMenuItem(TemplateView):
+    template_name = "menu-items/add_menu_item_form.html"
+
+    def get(self, request, *args, **kwargs):
+        menu_form = AddMenuItemForm(prefix="menu")
+        recipe_form = AddRecipeRequirementForm(prefix="recipe")
+
+        return self.render_to_response({
+            'menu_form': menu_form,
+            'recipe_form': recipe_form
+        })
+
+    def post(self, request):
+        menu_form = AddMenuItemForm(request.POST)
+        recipe_form = AddRecipeRequirementForm(request.POST)
+
+        if menu_form.is_valid() and recipe_form.is_valid():
+            menu_instance = menu_form.save()
+            recipe_instance = recipe_form.save(commit=False)
+            recipe_instance.menu_item = menu_instance
+            recipe_instance.save()
+
+            return redirect('menu-success')
+        
+        return self.render_to_response({
+            'menu_form': menu_form,
+            'recipe_form': recipe_form
+        })
+
 
 
 

@@ -31,4 +31,6 @@ urlpatterns = [
 
     path('menu-items/', views.MenuItemListView.as_view(), name='menu-item-list'),
     path('menu-items/ingredient_list/<int:pk>', views.MenuIngredientList.as_view(), name="menu-item-ingredient-list"),
+    path('menu-items/success', views.MenuSuccess.as_view(), name='menu-success'),
+    path('menu-items/add_menu_item_form', views.AddMenuItem.as_view(), name='add-menu-item'),
 ]
